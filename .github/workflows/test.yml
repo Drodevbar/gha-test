@@ -1,0 +1,20 @@
+name: Test
+
+on:
+  push
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service: ${{ fromJson(secrets.SERVICE_NAME_TO_API_KEY_MAP) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Print values
+        run: |
+          echo ${{ matrix.service }}
