@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        service: ${{ fromJson(secrets.SERVICE_NAME_TO_API_KEY_MAP) }}
+        service: ${{ fromJson(${{ secrets.SERVICE_NAME_TO_API_KEY_MAP }}) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
