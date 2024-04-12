@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        service: ${{ fromJson(vars.SERVICE_NAME_TO_API_KEY_MAP) }}
+        entry: ${{ fromJson(vars.SERVICE_NAME_TO_API_KEY_MAP) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -18,5 +18,5 @@ jobs:
           fetch-depth: 0
       - name: Print values
         run: |
-          echo "${{ fromJson(matrix.service).service }}"
-          echo "${{ fromJson(matrix.service).apiKey }}"
+          echo "${{ matrix.entry.service }}"
+          echo "${{ matrix.entry.apiKey }}"
