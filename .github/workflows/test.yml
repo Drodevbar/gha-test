@@ -14,16 +14,15 @@ jobs:
         id: create-matrix
         run: |
           SERVICES='[
-            {
-              "service": "foo",
-              "apiKeySecret": "API_KEY_FOO"
-            },
-            {
-              "service": "bar",
-              "apiKeySecret": "API_KEY_BAR"
-            }
-          ]'
-          echo "services=$SERVICES" >> $GITHUB_ENV
+          {
+            "service": "foo",
+            "apiKeySecret": "API_KEY_FOO"
+          },
+          {
+            "service": "bar",
+            "apiKeySecret": "API_KEY_BAR"
+          }]'
+          echo "services=$SERVICES" >> $GITHUB_OUTPUT
 
   test:
     name: Test
