@@ -8,10 +8,10 @@ jobs:
     name: Create services matrix
     runs-on: ubuntu-latest
     outputs:
-      services: ${{ steps.create-services-matrix.outputs.services }}
+      services: ${{ steps.create-matrix.outputs.services }}
     steps:
-      - name: Create services matrix
-        id: create-services-matrix
+      - name: Create matrix
+        id: create-matrix
         run: |
           SERVICES='[
             {
