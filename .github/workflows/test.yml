@@ -8,7 +8,7 @@ jobs:
     name: Create services matrix
     runs-on: ubuntu-latest
     outputs:
-        services: ${{ steps.create-services-matrix.outputs.services }}
+      services: ${{ steps.create-services-matrix.outputs.services }}
     steps:
       - name: Create services matrix
         run: |
@@ -22,7 +22,7 @@ jobs:
               "apiKeySecret": "API_KEY_BAR"
             }
           ]'
-          echo services=$SERVICES >> $GITHUB_OUTPUT
+          echo "services=$SERVICES" >> $GITHUB_OUTPUT
 
   test:
     name: Test
