@@ -13,15 +13,19 @@ jobs:
       - name: Create matrix
         id: create-matrix
         run: |
-          SERVICES='[
-          {
-            "service": "foo",
-            "apiKeySecret": "API_KEY_FOO"
-          },
-          {
-            "service": "bar",
-            "apiKeySecret": "API_KEY_BAR"
-          }]'
+          SERVICES=$(cat <<-END
+            [
+              {
+                "service": "foo",
+                "apiKeySecret": "API_KEY_FOO"
+              },
+              {
+                "service": "bar",
+                "apiKeySecret": "API_KEY_BAR"
+              }
+            ]
+          END
+          )
           echo "services=$SERVICES" >> $GITHUB_OUTPUT
 
   test:
