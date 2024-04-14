@@ -26,7 +26,7 @@ jobs:
             ]
           END
           )
-          echo "services=$SERVICES" >> $GITHUB_OUTPUT
+          echo "services=${{ toJson(SERVICES) }}" >> $GITHUB_ENV
 
   test:
     name: Test
