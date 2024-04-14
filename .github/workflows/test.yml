@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Create services matrix
         run: |
-          SERVICES = '[
+          SERVICES='[
             {
               "service": "foo",
               "apiKeySecret": "API_KEY_FOO"
