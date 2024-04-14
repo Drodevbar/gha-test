@@ -13,7 +13,7 @@ jobs:
       - name: Create matrix
         id: create-matrix
         run: |
-          SERVICES=$(cat <<-END
+          JSON=$(cat <<-END
             [
               {
                 "service": "foo",
@@ -26,7 +26,8 @@ jobs:
             ]
           END
           )
-          echo "services=${{ toJson("$SERVICES") }}" >> $GITHUB_ENV
+          SERVICES=$(echo "$JSON" | tr -d '[:space:]')
+          echo "services=$SERVICES" >> $GITHUB_OUTPUT
 
   test:
     name: Test
