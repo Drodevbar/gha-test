@@ -4,13 +4,33 @@ on:
   push
 
 jobs:
+  create-services-matrix:
+    name: Create services matrix
+    runs-on: ubuntu-latest
+    outputs:
+        services: ${{ steps.create-services-matrix.outputs.services }}
+    steps:
+      - name: Create services matrix
+        run: |
+          SERVICES = '[
+            {
+              "service": "foo",
+              "apiKeySecret": "API_KEY_FOO"
+            },
+            {
+              "service": "bar",
+              "apiKeySecret": "API_KEY_BAR"
+            }
+          ]'
+          echo services=$SERVICES >> $GITHUB_OUTPUT
+
   test:
     name: Test
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        entry: ${{ fromJson(vars.SERVICE_NAME_TO_API_KEY_MAP) }}
+        entry: ${{ fromJson(needs.create-services-matrix.outputs.services) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -19,5 +39,5 @@ jobs:
       - name: Print values
         run: |
           echo "${{ matrix.entry.service }}"
-          echo "${{ matrix.entry.apiKey }}"
-          echo "${{ secrets[matrix.entry.apiKey] }}"
+          echo "${{ matrix.entry.apiKeySecret }}"
+          echo "${{ secrets[matrix.entry.apiKeySecret] }}"
