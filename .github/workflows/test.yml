@@ -23,7 +23,7 @@ jobs:
               "apiKeySecret": "API_KEY_BAR"
             }
           ]'
-          echo "services=$SERVICES" >> $GITHUB_OUTPUT
+          echo "services=$SERVICES" >> $GITHUB_ENV
 
   test:
     name: Test
